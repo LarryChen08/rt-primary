@@ -11,15 +11,19 @@ def sortlist(list1):
             resList.append(item)
             continue
         for i in range(len(resList)):
-            if item > resList[i]:
+            if item >= resList[i]:
                 resList.insert(i,item)
                 break
+            if i+1 == len(resList):
+                resList.append(i)
+    if len(resList) != 3:
+        print(resList,list1)
     return resList
 
 result_list = [0,0,0,0]
 def check(a):
     out_list = [0,0,0,0]
-    for i in range(int(a*(10**8)/len(number_list))):
+    for i in range(a):
         d1,d2,d3 = random.randint(1,6),random.randint(1,6),random.randint(1,6)
         dList = [d1,d2,d3]
         dList = sortlist(dList)       
@@ -27,7 +31,7 @@ def check(a):
         if d1 == d2 == d3:
             out_list[0] += 1
         #shunzi
-        elif d1 - d2 == 1 and d2 - d3 == 0:
+        elif dList[0] - dList[1] == 1 and dList[1] - dList[2] == 1:
             out_list[1] += 1
         #duizi
         elif d1 == d2 or d1 == d3 or d2 == d3:
@@ -37,13 +41,13 @@ def check(a):
             out_list[3] += 1
     return out_list
 
-number_list = [1,1,1,1,1,1,1,1]
+
 
 if __name__ == "__main__":
     start_time_2 = time.time()
-    with concurrent.futures.ProcessPoolExecutor(max_workers=len(number_list)) as executor:
-        futures = [executor.submit(check, item)
-                   for item in number_list]
+    with concurrent.futures.ProcessPoolExecutor(max_workers=8) as executor:
+        futures = [executor.submit(check,int(10**8/8))
+                   for i in range(8)]
         for future in concurrent.futures.as_completed(futures):
             fut_list = future.result()
             for i in range(4):
@@ -51,7 +55,7 @@ if __name__ == "__main__":
     print("Operation time: " +
           str(time.time() - start_time_2), "seconds")
 
-print(result_list)#[2778765, 2313942, 39353145, 55554148]
+print(result_list)#[2777994, 4627023, 41195429, 51399554]
 
 x = ['baozi','shunzi','duizi','else']
 y = result_list
