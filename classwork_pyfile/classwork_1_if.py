@@ -1,4 +1,4 @@
-import time
+import time,pandas
 pApple = 3.5
 a, b = eval(input('weight of apples and bananas:'))
 sum = 0
