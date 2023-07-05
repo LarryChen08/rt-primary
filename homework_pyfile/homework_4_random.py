@@ -40,12 +40,12 @@ def check(a):
     return out_list
 
 
-num = 16
+num = 2
 
 if __name__ == "__main__":
     start_time_2 = time.time()
     with concurrent.futures.ProcessPoolExecutor(max_workers=num) as executor:
-        futures = [executor.submit(check,int(10**10/num))
+        futures = [executor.submit(check,int(10**7/num))
                    for i in range(num)]
         for future in concurrent.futures.as_completed(futures):
             fut_list = future.result()
@@ -72,5 +72,5 @@ plt.grid(axis='y')
 plt.legend(loc='upper left')
 
 plt.subplot(2,1,2)
-plt.pie(y,labels=x,autopct='%4f%%',labeldistance=1.1,startangle=90)
+plt.pie(y,labels=x,autopct='%.1f%%',labeldistance=1.1,startangle=90)
 plt.show

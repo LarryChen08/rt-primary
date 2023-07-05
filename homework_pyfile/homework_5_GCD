@@ -1,0 +1,10 @@
+a, b = eval(input('Please input two numbers:'))
+c = a % b
+
+
+while True:
+    a, b = b, c
+    c = a % b
+    if c == 0:
+        print('GCD: '+str(b))
+        break
