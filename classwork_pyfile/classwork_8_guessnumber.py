@@ -3,7 +3,11 @@ xList = []
 
 while bottom != top:
     x = int((bottom + top)/2)
+    '''
     if x in xList:
+        print('Your input is wrong')
+        break'''
+    if x == top or x == bottom:
         print('Your input is wrong')
         break
     xList.append(x)
