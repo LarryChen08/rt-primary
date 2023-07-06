@@ -17,15 +17,3 @@ for y in range(1,r+1):
         outstr += '* '
     print(outstr)
     
-'''
-10
-9
-8
-7
-6
-5
-4
-3
-2
-1
-0'''
