@@ -4,12 +4,11 @@ if b > a:
 
 c = a % b
 
-if c == 0:
-    print(b)
 
 while True:
-    a, b = b, c
-    c = a % b
     if c == 0:
         print('GCD: '+str(b))
         break
+    a, b = b, c
+    c = a % b
+    
