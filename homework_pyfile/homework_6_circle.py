@@ -9,7 +9,7 @@ for y in range(r,-1,-1):
         outstr += '* '
     print(outstr)
 
-for y in range(1,r+1)
+for y in range(1,r+1):
     x = int((r*r-y*y)**0.5)
     outstr = ''
     for i in range(r-x):
