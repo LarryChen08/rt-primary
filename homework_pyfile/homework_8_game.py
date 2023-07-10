@@ -1,7 +1,7 @@
 import pygame, sys, random
 SCREEN_W, SCREEN_H = 800, 600 #set window size
 
-class CLS_box(object):
+class CLS_box(object): 
     def __init__(self, rect, speed, color = (255,255,255)):
         self.rect = pygame.Rect(rect)
         self.speed = speed
@@ -73,13 +73,23 @@ while True:
         for b0 in boxList:
             if b == b0:
                 continue
-        #----contact detection----
-        if (abs(b0.rect.bottom - b.rect.top) <= 1) and (b.rect.right >= b0.rect.left) and (b0.rect.right >= b.rect.left):
-            b.speed[1] = -b.speed[1]
-        if (abs(b0.rect.top - b.rect.bottom) <= 1) and (b.rect.right >= b0.rect.left) and (b0.rect.right >= b.rect.left):
-            b.speed[1] = -b.speed[1]
-        if (abs(b0.rect.bottom - b.rect.top) <= 1) and (b.rect.right >= b0.rect.left) and (b0.rect.right >= b.rect.left):
-            b.speed[1] = -b.speed[1]
-        if (abs(b0.rect.bottom - b.rect.top) <= 1) and (b.rect.right >= b0.rect.left) and (b0.rect.right >= b.rect.left):
-            b.speed[1] = -b.speed[1]
+            #----contact detection----
+            if (abs(b0.rect.bottom - b.rect.top) <= 1) and (b.rect.right >= b0.rect.left) and (b0.rect.right >= b.rect.left):
+                b.speed[1] = -b.speed[1]
+            if (abs(b0.rect.top - b.rect.bottom) <= 1) and (b.rect.right >= b0.rect.left) and (b0.rect.right >= b.rect.left):
+                b.speed[1] = -b.speed[1]
+            if (abs(b0.rect.bottom - b.rect.top) <= 1) and (b.rect.right >= b0.rect.left) and (b0.rect.right >= b.rect.left):
+                b.speed[1] = -b.speed[1]
+            if (abs(b0.rect.bottom - b.rect.top) <= 1) and (b.rect.right >= b0.rect.left) and (b0.rect.right >= b.rect.left):
+                b.speed[1] = -b.speed[1]
+        b.move()
+        b.draw(screen)
+        if myBox.rect.colliderect(b.rect):
+            print('score: ' + str((pygame.time.get_ticks() - timeStart) / 1000))
+            pygame.quit()
+            sys.exit()
+    imgText = font.render(str((pygame.time.get_ticks() - timeStart) / 1000), True, (0, 0, 255))     
+    screen.blit(imgText, (SCREEN_W - 100, 0))  
+    pygame.display.update()
+    clock.tick(50) 
 
